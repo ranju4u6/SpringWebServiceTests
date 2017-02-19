@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://spring.ws.study.xsd/Register/"
+	xmlns:tns="http://spring.ws.study.xsd/Register/" elementFormDefault="qualified">
+
+	<element name="RegisterRequest">
+		<complexType>
+			<sequence>
+				<element type="tns:RegisterRequestType" name="RegisterRequest"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="RegisterResponse">
+		<complexType>
+			<sequence>
+				<element type="tns:RegisterResponseType" name="RegisterResponse"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="RegisterRequestType">
+		<sequence>
+			<element name="firstName" type="string" maxOccurs="1"
+				minOccurs="1"></element>
+			<element name="lastName" type="string" maxOccurs="1"
+				minOccurs="1"></element>
+			<element name="age" type="integer" maxOccurs="1" minOccurs="1"></element>
+			<element name="dob" type="date" maxOccurs="1" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RegisterResponseType">
+		<sequence>
+			<element name="registerStatus" type="int" maxOccurs="1"
+				minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+</schema>
