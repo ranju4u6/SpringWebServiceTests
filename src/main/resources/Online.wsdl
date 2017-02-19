@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://spring.ws.study.wsdl/Online/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:reg="http://spring.ws.study.xsd/Register/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Online" targetNamespace="http://spring.ws.study.wsdl/Online/">
+	
+	
+	<wsdl:types>
+		<xsd:schema> 
+			<xsd:import schemaLocation="Register.xsd" namespace="http://spring.ws.study.xsd/Register/"></xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+	 
+	
+
+	<wsdl:message name="RegisterReqMessage">
+		<wsdl:part element="reg:RegisterRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="RegisterResMessage">
+		<wsdl:part element="reg:RegisterResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="OnlinePortType">
+		<wsdl:operation name="Register">
+			<wsdl:input message="tns:RegisterReqMessage" />
+			<wsdl:output message="tns:RegisterResMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	
+	
+	<wsdl:binding name="RegisterSOAP" type="tns:OnlinePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Register">
+			<soap:operation soapAction="http://spring.ws.study.wsdl/Online/Register" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OnlineService">
+		<wsdl:port binding="tns:RegisterSOAP" name="RegisterSOAP">
+			<soap:address location="http://localhost:8080/SpringWSTester/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

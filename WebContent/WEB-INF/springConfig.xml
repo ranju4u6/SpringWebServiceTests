@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sws="http://www.springframework.org/schema/web-services"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/web-services
+        http://www.springframework.org/schema/web-services/web-services.xsd
+        http://www.springframework.org/schema/oxm
+        http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+        
+    <context:component-scan base-package="spring.ws.test"></context:component-scan>
+    <oxm:jaxb2-marshaller contextPath="spring.ws.test.generated" id="jaxb2Marshaller"></oxm:jaxb2-marshaller>
+    <sws:annotation-driven marshaller="jaxb2Marshaller" unmarshaller="jaxb2Marshaller"/>
+
+    <sws:dynamic-wsdl id="Register" portTypeName="OnlineServicePort" locationUri="/OnlineService/"
+        responseSuffix="Response" requestSuffix="Request" targetNamespace="http://spring.ws.study.xsd/Register/" >
+        <sws:xsd location="Register.xsd"/>
+        
+    </sws:dynamic-wsdl>
+</beans>
